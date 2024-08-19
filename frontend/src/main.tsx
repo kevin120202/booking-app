@@ -20,5 +20,11 @@ createRoot(document.getElementById('root')!).render(
                 <App />
             </AppContextProvider>
         </QueryClientProvider>
-    </StrictMode>,
+    </StrictMode>
 )
+
+/*********************
+- Initializes a QueryClient with default options to configure React Query behavior (e.g., no query retries)
+- Renders the React application into the root element, wrapping it with providers for React Query and AppContext
+- This setup ensures that query caching and state management are available throughout the app
+*********************/

@@ -32,3 +32,12 @@ function App() {
 }
 
 export default App
+
+
+/*********************
+Configures routing for the application using React Router
+Renders different components based on the current URL path:
+- The home page and search page use a common `Layout` component.
+- The register page includes the `Register` component within the `Layout`.
+- Redirects any unknown paths to the home page.
+*********************/
