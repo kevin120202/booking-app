@@ -13,7 +13,7 @@ export const register = async (formData: RegisterFormData) => {
 
     const resBody = await res.json()
 
-    if (!resBody.ok) {
+    if (!res.ok) {
         throw new Error(resBody.message)
     }
 }
