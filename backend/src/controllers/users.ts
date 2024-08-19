@@ -38,3 +38,11 @@ export const registerUser = async (req: Request, res: Response) => {
         res.status(500).json({ message: "Something went wrong" })
     }
 }
+
+/*************************
+- This function handles user registration by saving new user data and issuing a JWT
+- It checks for input validation errors and verifies if the user already exists
+- If the user doesn't exist, it creates a new user, saves it to the database, and generates a JWT with the user’s ID
+- The JWT is stored in an HTTP-only cookie for secure authentication
+- It provides feedback based on whether the registration was successful or if an error occurred
+*************************/

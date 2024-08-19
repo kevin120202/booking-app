@@ -16,12 +16,16 @@ const userSchema = new mongoose.Schema({
     lastName: { type: String, required: true },
 })
 
+/*
+- Before saving a user to the database, a Mongoose middleware function checks if the password has been modified. If it has, the password is hashed using bcrypt with a salt of 8 rounds, ensuring secure password storage
+*/
 userSchema.pre("save", async function (next) {
     if (this.isModified('password')) {
         this.password = await bcrypt.hash(this.password, 8)
     }
     next()
 })
+
 
 const User = mongoose.model<UserType>("User", userSchema)
 

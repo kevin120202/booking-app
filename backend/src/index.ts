@@ -9,11 +9,17 @@ import cookieParser from "cookie-parser"
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string)
 
 const app = express()
+// Parses cookies attached to the client request object, making them available under `req.cookies`
 app.use(cookieParser())
+// Parses incoming requests with JSON payloads and makes the data available in `req.body`
 app.use(express.json())
+// Parses incoming form data and puts it in `req.body`
+// The `extended: true` option allows for more complex data structures
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({
+    // Enables Cross-Origin Resource Sharing (CORS) to allow requests from the specified frontend URL
     origin: process.env.FRONTEND_URL,
+    // Allows the frontend to send cookies and other credentials with requests
     credentials: true,
 }))
 

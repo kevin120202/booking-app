@@ -22,5 +22,9 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
     } catch (error) {
         return res.status(401).json({ message: "unauthorized" })
     }
-
 }
+
+/*************************
+- This middleware is used to protect routes by ensuring that only requests with a valid JWT can access certain resources
+- The 'Request' interface is extended to include a 'userId' property, making it easier to work with user information throughout the app
+*************************/

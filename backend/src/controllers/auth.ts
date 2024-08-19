@@ -43,9 +43,10 @@ export const loginUser = async (req: Request, res: Response) => {
     }
 }
 
-// @desc    Validate token
-// @route   GET /api/auth/validate-token
-// @access  Public
-export const validateToken = (req: Request, res: Response) => {
-    return res.status(200).send({ userId: req.userId })
-}
+/*************************
+- This function handles user login by validating credentials and issuing a JWT if successful
+- It checks for input errors and verifies the user's email and password against the database
+- If valid, it generates a JWT with the user’s ID, stores it in an HTTP-only cookie, and returns the user ID
+- The function ensures secure authentication and provides feedback based on the login outcome
+*************************/
+
