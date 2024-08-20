@@ -7,7 +7,9 @@ import authRoutes from "./routes/auth"
 import cookieParser from "cookie-parser"
 import path from "path"
 
-mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string)
+// mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string)
+
+console.log(process.env.MONGODB_CONNECTION_STRING);
 
 const app = express()
 // Parses cookies attached to the client request object, making them available under `req.cookies`
@@ -30,7 +32,17 @@ app.use(express.static(path.join(__dirname, "../../frontend/dist")))
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
 
-app.listen(3000, () => {
-    console.log("server running on host 3000");
-})
+try {
+    mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string)
+    app.listen(3000, () => {
+        console.log(`server running on PORT 3000`);
+    })
+} catch (error) {
+    console.log(error);
+    process.exit(1)
+}
+
+// app.listen(3000, () => {
+//     console.log("server running on host 3000");
+// })
 
