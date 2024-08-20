@@ -28,7 +28,7 @@ function SignOutButton() {
     }
 
     return (
-        <button className="flex items-center px-3 py-2 font-bold hover:bg-gray-100 hover:cursor-pointer bg-yellow-300 text-black" onClick={handleClick}>Sign out</button>
+        <button className="flex items-center px-3 py-2 font-bold hover:bg-gray-100 hover:cursor-pointer bg-yellow-300 text-black" onClick={handleClick}>Sign Out</button>
     )
 }
 
