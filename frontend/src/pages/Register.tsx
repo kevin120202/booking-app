@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import * as apiClient from "../api-client"
 import { useAppContext } from "../contexts/AppContext";
 import { Link, useNavigate } from "react-router-dom";
@@ -13,6 +13,9 @@ export type RegisterFormData = {
 }
 
 function Register() {
+    // QueryClient is used to manage and interact with the cache of queries.
+    const queryClient = useQueryClient()
+
     const navigate = useNavigate()
     const { showToast } = useAppContext()
 
@@ -21,7 +24,10 @@ function Register() {
 
     // Mutation to handle user registration with React Query
     const mutation = useMutation(apiClient.register, {
-        onSuccess: () => {
+        onSuccess: async () => {
+            // Invalidate the "validateToken" query to ensure the client no longer considers the user as authenticated.
+            await queryClient.invalidateQueries("validateToken")
+
             showToast({ message: "Registration Success!", type: "SUCCESS" })
             navigate("/")
         },
@@ -102,9 +108,9 @@ function Register() {
                 )}
             </label>
 
-            <span className="flex gap-4 items-center">
+            <span className="flex justify-between items-center">
+                <span className="text-sm">Already registered? <Link to="/sign-in" className="underline">Sign in here</Link></span>
                 <button type="submit" className="bg-gray-600 py-2 px-4 font-bold text-white">Create Account</button>
-                <Link to="/sign-in">Sign In to your account</Link>
             </span>
         </form>
     )

@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 import * as apiClient from "../api-client"
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 
 export type SignInFormData = {
     email: string;
@@ -10,6 +10,9 @@ export type SignInFormData = {
 }
 
 function SignIn() {
+    // QueryClient is used to manage and interact with the cache of queries.
+    const queryClient = useQueryClient()
+
     const navigate = useNavigate()
     const { showToast } = useAppContext()
 
@@ -17,7 +20,10 @@ function SignIn() {
 
     // Mutation to handle user registration with React Query
     const mutation = useMutation(apiClient.signIn, {
-        onSuccess: () => {
+        onSuccess: async () => {
+            // Invalidate the "validateToken" query to ensure the client no longer considers the user as authenticated.
+            await queryClient.invalidateQueries("validateToken")
+
             showToast({ message: "Signed In!", type: "SUCCESS" })
             navigate("/")
         },
@@ -59,13 +65,19 @@ function SignIn() {
                 )}
             </label>
 
-            <span className="flex gap-4 items-center">
+            <span className="flex justify-between items-center">
+                <span className="text-sm">Not registered? <Link to="/register" className="underline">Create an account here</Link></span>
                 <button type="submit" className="bg-gray-600 py-2 px-4 font-bold text-white">Sign In</button>
-                <Link to="/register">Register for an account</Link>
             </span>
-            <p>Forgot password</p>
+            <p className="underline text-sm">Forgot password</p>
         </form>
     )
 }
 
 export default SignIn
+
+/*********************
+- Handles user login by collecting form data, validating inputs, and submitting to the server
+- On successful login, displays a success message, navigates to the home page, and shows errors if any
+- Utilizes React Hook Form for form management and React Query for handling mutations
+*********************/

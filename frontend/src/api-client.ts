@@ -42,6 +42,17 @@ export const signIn = async (formData: SignInFormData) => {
     return resBody
 }
 
+export const signOut = async () => {
+    const res = await fetch(`${API_BASE_URL}/api/auth/logout`, {
+        method: "POST",
+        credentials: "include", // Tell browser to include cookies in the req
+    })
+
+    if (!res.ok) {
+        throw new Error("Error during sign out")
+    }
+}
+
 // Sends a GET request to validate the current user's authentication token.
 // If the token is invalid, throws an error. Returns the response data if valid.
 // Used to check if a user is logged in.

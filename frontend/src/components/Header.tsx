@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import logo from "../assets/logo.png"
 import { useAppContext } from "../contexts/AppContext"
+import SignOutButton from "./SignOutButton"
 // import { useState } from "react";
 
 function Header() {
@@ -29,7 +30,7 @@ function Header() {
                     {isLoggedIn ? <>
                         <Link to="/my-bookings"><li>My Bookings</li></Link>
                         <Link to="/my-travels"><li>My Travels</li></Link>
-                        <button className="flex items-center px-3 py-2 font-bold hover:bg-gray-100 hover:cursor-pointer bg-yellow-300 text-black">Sign out</button>
+                        <SignOutButton />
                     </> : <>
                         <Link to="/sign-in" className="flex items-center px-3 py-2 font-bold hover:bg-gray-100 hover:cursor-pointer bg-yellow-300 text-black"><li>Sign In</li></Link>
                     </>}

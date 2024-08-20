@@ -53,3 +53,13 @@ export const loginUser = async (req: Request, res: Response) => {
 - The function ensures secure authentication and provides feedback based on the login outcome
 *************************/
 
+// @desc    Logout user
+// @route   POST /api/auth/logout
+// @access  Private
+export const logoutUser = (req: Request, res: Response) => {
+    // Create an empty auth_token and token expires at creation
+    res.cookie("auth_token", "", {
+        expires: new Date(0)
+    })
+    res.send()
+}
