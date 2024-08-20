@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form"
 import { useMutation } from "react-query";
 import * as apiClient from "../api-client"
 import { useAppContext } from "../contexts/AppContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export type RegisterFormData = {
     firstName: string;
@@ -16,8 +16,10 @@ function Register() {
     const navigate = useNavigate()
     const { showToast } = useAppContext()
 
+    // Initialize form handling with React Hook Form
     const { register, watch, handleSubmit, formState: { errors } } = useForm<RegisterFormData>()
 
+    // Mutation to handle user registration with React Query
     const mutation = useMutation(apiClient.register, {
         onSuccess: () => {
             showToast({ message: "Registration Success!", type: "SUCCESS" })
@@ -29,7 +31,7 @@ function Register() {
     })
 
     const onSubmit = handleSubmit(data => {
-        mutation.mutate(data)
+        mutation.mutate(data) // Trigger the mutation with form data
     })
 
     return (
@@ -100,11 +102,19 @@ function Register() {
                 )}
             </label>
 
-            <span>
+            <span className="flex gap-4 items-center">
                 <button type="submit" className="bg-gray-600 py-2 px-4 font-bold text-white">Create Account</button>
+                <Link to="/sign-in">Sign In to your account</Link>
             </span>
         </form>
     )
 }
 
 export default Register
+
+
+/*********************
+- Handles user registration by collecting form data, validating inputs, and submitting to the server
+- On successful registration, displays a success message, navigates to the home page, and shows errors if any
+- Utilizes React Hook Form for form management and React Query for handling mutations
+*********************/

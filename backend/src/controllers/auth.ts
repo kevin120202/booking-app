@@ -21,15 +21,18 @@ export const loginUser = async (req: Request, res: Response) => {
             return res.status(400).json({ message: "Invalid credentials" })
         }
 
+        // Check if password matches by hashing the password passed in
         const isMatch = await bcrypt.compare(password, user.password)
         if (!isMatch) {
             return res.status(400).json({ message: "Invalid credentials" })
         }
 
+        // Create token
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET_KEY as string, {
             expiresIn: "1d"
         })
 
+        // Store token in HTTP-only cookie
         res.cookie("auth_token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",

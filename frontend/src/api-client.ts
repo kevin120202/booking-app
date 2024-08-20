@@ -1,4 +1,5 @@
 import { RegisterFormData } from "./pages/Register";
+import { SignInFormData } from "./pages/SignIn";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 
@@ -21,8 +22,29 @@ export const register = async (formData: RegisterFormData) => {
     }
 }
 
+// Sends a POST req to login with the form data
+export const signIn = async (formData: SignInFormData) => {
+    const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
+        method: "POST",
+        credentials: "include", // Tell browser to include cookies in the req
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+
+    const resBody = await res.json()
+
+    if (!res.ok) {
+        throw new Error(resBody.message)
+    }
+
+    return resBody
+}
+
 // Sends a GET request to validate the current user's authentication token.
 // If the token is invalid, throws an error. Returns the response data if valid.
+// Used to check if a user is logged in.
 export const validateToken = async () => {
     const res = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
         credentials: "include", // Includes cookies with the request
