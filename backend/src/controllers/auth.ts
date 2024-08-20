@@ -46,6 +46,7 @@ export const loginUser = async (req: Request, res: Response) => {
     }
 }
 
+
 /*************************
 - This function handles user login by validating credentials and issuing a JWT if successful
 - It checks for input errors and verifies the user's email and password against the database
