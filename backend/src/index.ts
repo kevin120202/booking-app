@@ -33,3 +33,4 @@ app.use("/api/users", userRoutes)
 app.listen(3000, () => {
     console.log("server running on host 3000");
 })
+
