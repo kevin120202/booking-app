@@ -1,7 +1,7 @@
 import { RegisterFormData } from "./pages/Register";
 import { SignInFormData } from "./pages/SignIn";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || ""
 
 // Sends a POST request to register a new user with the provided form data.
 // If the registration fails, throws an error with the response message.
