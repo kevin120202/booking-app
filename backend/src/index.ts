@@ -2,11 +2,14 @@ import express, { Request, Response } from "express"
 import cors from "cors"
 import "dotenv/config"
 import mongoose from "mongoose"
-import userRoutes from "./routes/users"
-import authRoutes from "./routes/auth"
 import cookieParser from "cookie-parser"
 import path from "path"
 import { v2 as cloudinary } from "cloudinary"
+
+// Routes
+import userRoutes from "./routes/users"
+import authRoutes from "./routes/auth"
+import myHotelRoutes from "./routes/my-hotels"
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -32,8 +35,10 @@ app.use(cors({
 // Serve static files from the frontend's build directory (e.g., HTML, CSS, JS)
 app.use(express.static(path.join(__dirname, "../../frontend/dist")))
 
+// Mount routers
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
+app.use("/api/my-hotels", myHotelRoutes)
 
 const startServer = async () => {
     try {
