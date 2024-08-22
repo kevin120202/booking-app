@@ -19,6 +19,7 @@ test('should allow the user to sign in', async ({ page }) => {
     await page.getByRole("button", { name: "Sign In" }).click()
 
     // Expect toast pop up and links change
+    await expect(page.getByText("Signed In!")).toBeVisible()
     await expect(page.getByRole("link", { name: "My Bookings" })).toBeVisible()
     await expect(page.getByRole("link", { name: "My Travels" })).toBeVisible()
     await expect(page.getByRole("button", { name: "Sign Out" })).toBeVisible()
