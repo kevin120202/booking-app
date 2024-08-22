@@ -7,13 +7,19 @@ import Hotel, { HotelType } from "../models/hotel";
 // @access  Private
 export const createHotel = async (req: Request, res: Response) => {
     try {
+        // `req.files` contains an array of image files uploaded via the `multer` middleware.
+        // Type assertion to ensure it's recognized as an array of `Express.Multer.File` objects.
         const imageFiles = req.files as Express.Multer.File[]
+        // `newHotel` is initialized with the body data sent in the request.
         const newHotel: HotelType = req.body
 
-        // Upload the imgs to cloudinary
+        // Upload each image to Cloudinary and return an array of upload promises.
         const uploadPromises = imageFiles.map(async (image) => {
+            // Convert image buffer to base64 string
             const b64 = Buffer.from(image.buffer).toString("base64")
+            // Construct a data URI (format required by Cloudinary
             let dataURI = `data:${image.mimetype};base64,${b64}`
+            // Upload the image to Cloudinary and return the URL of the uploaded image
             const res = await cloudinary.v2.uploader.upload(dataURI)
             return res.url
         })
