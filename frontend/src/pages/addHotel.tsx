@@ -3,7 +3,7 @@ import { useAppContext } from "../contexts/AppContext"
 import ManageHotelForm from "../forms/ManageHotelForm/ManageHotelForm"
 import * as apiClient from "../api-client"
 
-function addHotel() {
+function AddHotel() {
     const { showToast } = useAppContext()
 
     const { mutate, isLoading } = useMutation(apiClient.addMyHotel, {
@@ -25,4 +25,4 @@ function addHotel() {
     )
 }
 
-export default addHotel
+export default AddHotel

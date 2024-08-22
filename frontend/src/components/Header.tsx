@@ -29,7 +29,7 @@ function Header() {
                     <Link to="/contact"><li>Contact</li></Link>
                     {isLoggedIn ? <>
                         <Link to="/my-bookings"><li>My Bookings</li></Link>
-                        <Link to="/my-travels"><li>My Travels</li></Link>
+                        <Link to="/my-hotels"><li>My Hotels</li></Link>
                         <SignOutButton />
                     </> : <>
                         <Link to="/sign-in" className="flex items-center px-3 py-2 font-bold hover:bg-gray-100 hover:cursor-pointer bg-yellow-300 text-black"><li>Sign In</li></Link>
