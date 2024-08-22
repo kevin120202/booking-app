@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer";
 import { verifyToken } from "../middleware/auth";
-import { createHotel } from "../controllers/my-hotels";
+import { createHotel, getAllHotels } from "../controllers/my-hotels";
 import { body } from "express-validator";
 
 const router = express.Router()
@@ -24,5 +24,7 @@ router.post("/", verifyToken, [
     body("pricePerNight").notEmpty().isNumeric().withMessage("Price per night is required and must be a number"),
     body("facilities").notEmpty().isArray().withMessage("Facilities is required"),
 ], upload.array("imageFiles", 6), createHotel)
+
+router.get("/", verifyToken, getAllHotels)
 
 export default router

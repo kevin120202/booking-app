@@ -41,3 +41,21 @@ export const createHotel = async (req: Request, res: Response) => {
         res.status(500).json({ message: "Something went wrong" })
     }
 }
+
+// @desc    Get all hotels
+// @route   GET /api/my-hotels
+// @access  Private
+export const getAllHotels = async (req: Request, res: Response) => {
+
+    try {
+        const hotels = await Hotel.find({ userId: req.userId })
+
+        if (hotels.length === 0) {
+            return res.status(200).json({ message: "No hotels to fetch" })
+        }
+
+        res.status(200).json(hotels)
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching hotels" })
+    }
+}
