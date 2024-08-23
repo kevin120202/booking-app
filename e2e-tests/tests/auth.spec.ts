@@ -21,7 +21,7 @@ test('should allow the user to sign in', async ({ page }) => {
     // Expect toast pop up and links change
     await expect(page.getByText("Signed In!")).toBeVisible()
     await expect(page.getByRole("link", { name: "My Bookings" })).toBeVisible()
-    await expect(page.getByRole("link", { name: "My Travels" })).toBeVisible()
+    await expect(page.getByRole("link", { name: "My Hotels" })).toBeVisible()
     await expect(page.getByRole("button", { name: "Sign Out" })).toBeVisible()
 });
 
@@ -48,6 +48,6 @@ test("should allow user to register", async ({ page }) => {
     // Expect toast pop up and links change
     await expect(page.getByText("Registration Success!")).toBeVisible()
     await expect(page.getByRole("link", { name: "My Bookings" })).toBeVisible()
-    await expect(page.getByRole("link", { name: "My Travels" })).toBeVisible()
+    await expect(page.getByRole("link", { name: "My Hotels" })).toBeVisible()
     await expect(page.getByRole("button", { name: "Sign Out" })).toBeVisible()
 })
