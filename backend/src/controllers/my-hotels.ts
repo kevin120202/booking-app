@@ -51,9 +51,9 @@ export const getAllHotels = async (req: Request, res: Response) => {
     try {
         const hotels = await Hotel.find({ userId: req.userId })
 
-        if (hotels.length === 0) {
-            return res.status(200).json({ message: "No hotels to fetch" })
-        }
+        // if (hotels.length === 0) {
+        //     return res.status(200).json({ message: "No hotels to fetch" })
+        // }
 
         res.status(200).json(hotels)
     } catch (error) {

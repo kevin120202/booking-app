@@ -18,7 +18,7 @@ function MyHotels() {
         return <div>Loading...</div>
     }
 
-    if (!hotelData) {
+    if (hotelData?.length === 0) {
         return <span>No hotel data found</span>
     }
 
