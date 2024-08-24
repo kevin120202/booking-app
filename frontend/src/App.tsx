@@ -10,7 +10,6 @@ import SignIn from './pages/SignIn'
 import { useAppContext } from './contexts/AppContext'
 import MyHotels from './pages/MyHotels'
 import AddHotel from './pages/AddHotel'
-import React from 'react'
 
 function App() {
 
