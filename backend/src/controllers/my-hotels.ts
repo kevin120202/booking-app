@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import cloudinary from "cloudinary"
 import Hotel from "../models/hotel";
-import { HotelType } from "../models/hotel";
+import { HotelType } from "../shared/types";
 
 // @desc    Create hotel
 // @route   POST /api/my-hotels
