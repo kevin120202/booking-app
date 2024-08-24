@@ -8,8 +8,8 @@ import Layout from './layouts/Layout'
 import Register from './pages/Register'
 import SignIn from './pages/SignIn'
 import { useAppContext } from './contexts/AppContext'
-import AddHotel from './pages/AddHotel'
 import MyHotels from './pages/MyHotels'
+import AddHotel from './pages/AddHotel'
 
 function App() {
 
