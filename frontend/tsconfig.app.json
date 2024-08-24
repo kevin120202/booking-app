@@ -10,7 +10,7 @@
         "module": "ESNext",
         "skipLibCheck": true,
         /* Bundler mode */
-        "moduleResolution": "bundler",
+        "moduleResolution": "node",
         "allowImportingTsExtensions": true,
         "isolatedModules": true,
         "moduleDetection": "force",
@@ -23,7 +23,6 @@
         "noFallthroughCasesInSwitch": true
     },
     "include": [
-        "src/**/*",
-        "../backend/src/shared/**/*.ts"
+        "src/**/*"
     ]
 }
