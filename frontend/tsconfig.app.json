@@ -23,7 +23,7 @@
         "noFallthroughCasesInSwitch": true
     },
     "include": [
-        "src",
-        "src/pages/AddHotel.tsx"
+        "src/**/*",
+        "../backend/src/shared/**/*.ts"
     ]
 }
