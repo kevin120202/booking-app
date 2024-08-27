@@ -60,3 +60,21 @@ export const getAllHotels = async (req: Request, res: Response) => {
         res.status(500).json({ message: "Error fetching hotels" })
     }
 }
+
+// @desc    Edit hotel
+// @route   PUT /api/my-hotels/:id
+// @access  Private
+export const editHotel = async (req: Request, res: Response) => {
+    const id = req.params.id.toString()
+
+    try {
+        const hotel = await Hotel.findOne({
+            _id: id,
+            userId: req.userId
+        })
+
+        res.json(hotel)
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching hotel" })
+    }
+}
